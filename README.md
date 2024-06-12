@@ -36,3 +36,28 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Roadmap
+
+* scope
+	* single chart
+	* always select default values file
+	* manually select extra values files
+	* sub-charts and their default values files
+	* json schemas defaults
+	* reorder values files
+* main table
+	* Keys \ Values files
+	* indented sub-keys
+	* values files stack from left to right
+	* non-overridden values show at half opacity
+* values types
+	* undefined
+	* explicit null
+	* boolean
+	* number
+	* string: |, |-, >, >-, '', ""
+	* object
+	* array
+* auto-reload
+* edit
