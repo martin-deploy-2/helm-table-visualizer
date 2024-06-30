@@ -1,21 +1,24 @@
 <script lang="ts">
-	import "../app.css"
-	import Mockup from "$lib/components/Mockup.svelte"
-	import Td from "$lib/components/prototyping/Td.svelte"
+	import { browser } from "$app/environment"
+	import { onMount } from "svelte"
+	import "../app.scss"
+
+	onMount(async () => {
+		if (!browser) return
+		const bootstrap = await import("bootstrap")
+	})
+
+	let theme = false
+
+	$: {
+		if (browser) {
+			document.documentElement.setAttribute("data-bs-theme", theme ? "light" : "dark")
+		}
+	}
 </script>
 
-<!-- <Mockup/> -->
-<div class="theme-dark">
-	<Td/>
+<input type="checkbox" bind:checked={theme}/>
+<div class="container py-4 px-3 mx-auto">
+	<h1>Hello, Bootstrap!</h1>
+	<button class="btn btn-primary">Primary button</button>
 </div>
-
-
-<style>
-	div {
-		/* width: 240px; */
-		/* height: 24px; */
-		background: var(--BG-COLOR);
-		color: var(--FG-COLOR);
-		padding: 50px;
-	}
-</style>
