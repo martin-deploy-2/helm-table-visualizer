@@ -17,12 +17,10 @@
 		"js-yaml": "^4.1.0"
 	},
 	"devDependencies": {
-		"@popperjs/core": "^2.11.8",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@sveltestrap/sveltestrap": "^6.2.7",
-		"@types/bootstrap": "^5.2.10",
 		"@types/eslint": "^8.56.7",
 		"@types/js-yaml": "^4.0.9",
 		"eslint": "^9.0.0",
@@ -31,7 +29,6 @@
 		"globals": "^15.0.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
-		"sass": "^1.77.5",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
 		"tslib": "^2.4.1",

@@ -6,7 +6,7 @@
 
 <Styles theme={darkTheme ? "dark" : "light"} />
 
-<Container>
+<Container fluid>
 	<h1>Coucou, <Icon name="globe-europe-africa" />!</h1>
 	<Input type="switch" label="Dark theme" bind:checked={darkTheme} />
 </Container>
