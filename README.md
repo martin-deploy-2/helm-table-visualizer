@@ -39,13 +39,13 @@ You can preview the production build with `npm run preview`.
 
 ## Roadmap
 
-* scope
-	* single chart
-	* always select default values file
-	* manually select extra values files
-	* sub-charts and their default values files
-	* json schemas defaults
-	* reorder values files
+* values from
+	* sub-charts json schema defaults
+	* sub-charts default values file
+	* chart json schema defaults
+	* chart default values file
+	* chart overlay values file
+	* beware sub-charts X global values
 * main table
 	* Keys \ Values files
 	* indented sub-keys
@@ -57,7 +57,8 @@ You can preview the production build with `npm run preview`.
 	* boolean
 	* number
 	* string: |, |-, >, >-, '', ""
-	* object
 	* array
+	* object
 * auto-reload
 * edit
+* search|filter keys|values plain|regexp

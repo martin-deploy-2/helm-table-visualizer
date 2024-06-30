@@ -1,0 +1,41 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+:root {
+	--COLOR-DATA-UNDEFINED:          hsl(283, 80%, 50%);
+	--COLOR-DATA-NULL:               hsl(323, 80%, 50%);
+	--COLOR-DATA-BOOL:               hsl(203, 80%, 50%);
+	--COLOR-DATA-NUMBER:             hsl(134, 80%, 50%);
+	--COLOR-DATA-STRING-PLAIN:       hsl(12, 80%, 50%);
+	--COLOR-DATA-STRING-DOUBLE:      hsl(17, 80%, 50%);
+	--COLOR-DATA-STRING-SINGLE:      hsl(22, 80%, 50%);
+	--COLOR-DATA-STRING-PIPE:        hsl(27, 80%, 50%);
+	--COLOR-DATA-STRING-PIPE-DASH:   hsl(32, 80%, 50%);
+	--COLOR-DATA-STRING-PIPE-PLUS:   hsl(37, 80%, 50%);
+	--COLOR-DATA-STRING-CHEVRON:     hsl(42, 80%, 50%);
+	--COLOR-DATA-STRING-CHEVRON-DASH:hsl(47, 80%, 50%);
+	--COLOR-DATA-STRING-CHEVRON-PLUS:hsl(52, 80%, 50%);
+	--COLOR-DATA-LIST:               hsl(157, 80%, 50%);
+	--COLOR-DATA-DICT:               hsl(180, 80%, 50%);
+}
+
+.theme-light {
+	--BG-COLOR: #dadada;
+	--FG-COLOR: #1d1d1d;
+}
+
+.theme-dark {
+	--BG-COLOR: #2d2d2d;
+	--FG-COLOR: #f0f0f0;
+}
