@@ -14,13 +14,15 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"bootstrap": "^5.3.3",
+		"bootstrap-icons": "^1.11.3",
 		"js-yaml": "^4.1.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
-		"@sveltestrap/sveltestrap": "^6.2.7",
+		"@types/bootstrap": "^5.2.10",
 		"@types/eslint": "^8.56.7",
 		"@types/js-yaml": "^4.0.9",
 		"eslint": "^9.0.0",

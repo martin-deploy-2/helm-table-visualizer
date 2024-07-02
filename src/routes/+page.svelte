@@ -1,10 +1,25 @@
 <script lang="ts">
-  import { Icon, Styles } from "@sveltestrap/sveltestrap"
+	import { browser } from "$app/environment"
+	import { onMount } from "svelte"
+
+	import "bootstrap/dist/css/bootstrap.css"
+	import "bootstrap-icons/font/bootstrap-icons.css"
+
+	onMount(async () => {
+		if (browser) {
+			const _bootstrap = await import("bootstrap")
+			console.log(_bootstrap)
+		}
+	})
 
 	let darkTheme = true
-</script>
 
-<Styles theme={darkTheme ? "dark" : "light"} />
+	$: {
+		if (browser) {
+			document.documentElement.setAttribute("data-bs-theme", darkTheme ? "dark" : "light")
+		}
+	}
+</script>
 
 <div class="d-flex flex-row vh-100 overflow-hidden">
 	<div class="flex-shrink-0 bg-primary-subtle px-4 py-3 overflow-y-auto">
@@ -120,7 +135,11 @@
 			</li>
 		</ul>
 
-		<h3 class="h6 mt-3 mb-0">From chart overlay values</h3>
+		<h3 class="h6 mt-3 mb-1">From chart overlay values</h3>
+		<label class="form-label mb-0 w-100">
+			<span class="text-body-secondary">Pattern:</span>
+			<input type="search" class="form-control mt-1" placeholder="values/**/*.yaml"/>
+		</label>
 		<p class="text-body-secondary mt-1 mb-2">
 			Drag to re-order.
 		</p>
@@ -185,7 +204,7 @@
 		<table class="table table-sm table-borderless">
 			<thead class="sticky-top">
 				<tr>
-					<th scope="col" class="bg-secondary-subtle text-nowrap text-body-secondary position-sticky start-0" style="min-width: 200px;">Keys \ Values</th>
+					<th scope="col" class="bg-secondary-subtle text-nowrap text-body-secondary position-sticky start-0 text-end" style="min-width: 200px;">Keys \ Values</th>
 					<th scope="col" class="bg-secondary-subtle text-nowrap text-body-secondary" style="min-width: 300px;">From dependencies schemas</th>
 					<th scope="col" class="bg-secondary-subtle text-nowrap text-body-secondary" style="min-width: 300px;">From dependencies default values</th>
 					<th scope="col" class="bg-secondary-subtle text-nowrap text-body-secondary" style="min-width: 300px;">From chart schema</th>
@@ -195,211 +214,128 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row" class="position-sticky start-0 bg-secondary-subtle">1</th>
-					<td class="bg-primary">Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">exampleDict</th>
+					<td class="p-0"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleUndefined</th>
+					<td class="p-0"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleNull</th>
+					<td class="p-0"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleBool</th>
+					<td class="p-0">
+						<div class="dropend d-flex flex-row align-items-stretch">
+							<button class="btn btn-secondary btn-sm dropdown-toggle flex-shrink-1 rounded-0 rounded-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-toggles"></i>
+							</button>
+							<ul class="dropdown-menu">
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-question-circle me-1"></i> Undefined <span class="text-body-secondary">→ default</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-slash-circle me-1"></i> Null <span class="text-body-secondary">→ delete</span></button></li>
+								<li><button class="dropdown-item px-2 py-1 active"><i class="bi bi-toggles me-1"></i> Boolean</button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-123 me-1"></i> Number</button></li>
+								<li><hr class="dropdown-divider my-2"></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative"></i> String <span class="text-body-secondary">no quotes</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">'</code>
+								</i> String <span class="text-body-secondary"><code>'</code> quotes</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">""</code>
+								</i> String <span class="text-body-secondary"><code>"</code> quotes</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|</code>
+								</i> String <span class="text-body-secondary"><code>|</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|-</code>
+								</i> String <span class="text-body-secondary"><code>|-</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|+</code>
+								</i> String <span class="text-body-secondary"><code>|+</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;</code>
+								</i> String <span class="text-body-secondary"><code>&gt;</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;-</code>
+								</i> String <span class="text-body-secondary"><code>&gt;-</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;+</code>
+								</i> String <span class="text-body-secondary"><code>&gt;+</code> block</span></button></li>
+								<li><hr class="dropdown-divider my-2"></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-ul me-1"></i> List</button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-nested me-1"></i> Dict</button></li>
+							</ul>
+							<div class="flex-shrink-2 w-100 p-0">
+								<input class="form-check-input m-0 p-0 w-100 h-100 rounded-0 rounded-end" style="background-size: 1em;" type="checkbox" checked/>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleNumber</th>
+					<td class="p-0">
+						<div class="dropend d-flex flex-row align-items-stretch">
+							<button class="btn btn-secondary btn-sm dropdown-toggle flex-shrink-1 rounded-0 rounded-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-123"></i>
+							</button>
+							<ul class="dropdown-menu">
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-question-circle me-1"></i> Undefined <span class="text-body-secondary">→ default</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-slash-circle me-1"></i> Null <span class="text-body-secondary">→ delete</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-toggles me-1"></i> Boolean</button></li>
+								<li><button class="dropdown-item px-2 py-1 active"><i class="bi bi-123 me-1"></i> Number</button></li>
+								<li><hr class="dropdown-divider my-2"></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative"></i> String <span class="text-body-secondary">no quotes</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">'</code>
+								</i> String <span class="text-body-secondary"><code>'</code> quotes</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">""</code>
+								</i> String <span class="text-body-secondary"><code>"</code> quotes</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|</code>
+								</i> String <span class="text-body-secondary"><code>|</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|-</code>
+								</i> String <span class="text-body-secondary"><code>|-</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|+</code>
+								</i> String <span class="text-body-secondary"><code>|+</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;</code>
+								</i> String <span class="text-body-secondary"><code>&gt;</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;-</code>
+								</i> String <span class="text-body-secondary"><code>&gt;-</code> block</span></button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
+									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;+</code>
+								</i> String <span class="text-body-secondary"><code>&gt;+</code> block</span></button></li>
+								<li><hr class="dropdown-divider my-2"></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-ul me-1"></i> List</button></li>
+								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-nested me-1"></i> Dict</button></li>
+							</ul>
+							<div class="flex-shrink-2 w-100 p-0">
+								<input class="form-control p-0 w-100 h-100 rounded-0 rounded-end text-end font-monospace" type="number" value="300"/>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleString</th>
+					<td class="p-0"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleList</th>
+					<td class="p-0"></td>
 				</tr>
 
-
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row" class="position-sticky start-0 bg-secondary-subtle">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+				{#each { length: 100 } as _}
+					<tr>
+						<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">FillMe</th>
+						<td class="p-0"></td>
+					</tr>
+				{/each}
 
 
 
