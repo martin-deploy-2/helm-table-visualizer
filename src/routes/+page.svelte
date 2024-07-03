@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from "$app/environment"
 	import { onMount } from "svelte"
+	import Val from "./Val.svelte"
 
 	import "bootstrap/dist/css/bootstrap.css"
 	import "bootstrap-icons/font/bootstrap-icons.css"
@@ -8,7 +9,6 @@
 	onMount(async () => {
 		if (browser) {
 			const _bootstrap = await import("bootstrap")
-			console.log(_bootstrap)
 		}
 	})
 
@@ -214,125 +214,99 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">exampleDict</th>
-					<td class="p-0"></td>
-				</tr>
-				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleUndefined</th>
-					<td class="p-0"></td>
-				</tr>
-				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleNull</th>
-					<td class="p-0"></td>
-				</tr>
-				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleBool</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">exampleDict</th>
 					<td class="p-0">
-						<div class="dropend d-flex flex-row align-items-stretch">
-							<button class="btn btn-secondary btn-sm dropdown-toggle flex-shrink-1 rounded-0 rounded-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-toggles"></i>
-							</button>
-							<ul class="dropdown-menu">
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-question-circle me-1"></i> Undefined <span class="text-body-secondary">→ default</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-slash-circle me-1"></i> Null <span class="text-body-secondary">→ delete</span></button></li>
-								<li><button class="dropdown-item px-2 py-1 active"><i class="bi bi-toggles me-1"></i> Boolean</button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-123 me-1"></i> Number</button></li>
-								<li><hr class="dropdown-divider my-2"></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative"></i> String <span class="text-body-secondary">no quotes</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">'</code>
-								</i> String <span class="text-body-secondary"><code>'</code> quotes</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">""</code>
-								</i> String <span class="text-body-secondary"><code>"</code> quotes</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|</code>
-								</i> String <span class="text-body-secondary"><code>|</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|-</code>
-								</i> String <span class="text-body-secondary"><code>|-</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|+</code>
-								</i> String <span class="text-body-secondary"><code>|+</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;</code>
-								</i> String <span class="text-body-secondary"><code>&gt;</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;-</code>
-								</i> String <span class="text-body-secondary"><code>&gt;-</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;+</code>
-								</i> String <span class="text-body-secondary"><code>&gt;+</code> block</span></button></li>
-								<li><hr class="dropdown-divider my-2"></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-ul me-1"></i> List</button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-nested me-1"></i> Dict</button></li>
-							</ul>
-							<div class="flex-shrink-2 w-100 p-0">
-								<input class="form-check-input m-0 p-0 w-100 h-100 rounded-0 rounded-end" style="background-size: 1em;" type="checkbox" checked/>
-							</div>
-						</div>
+						<Val tdict/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleNumber</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleUndefined</th>
 					<td class="p-0">
-						<div class="dropend d-flex flex-row align-items-stretch">
-							<button class="btn btn-secondary btn-sm dropdown-toggle flex-shrink-1 rounded-0 rounded-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-123"></i>
-							</button>
-							<ul class="dropdown-menu">
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-question-circle me-1"></i> Undefined <span class="text-body-secondary">→ default</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-slash-circle me-1"></i> Null <span class="text-body-secondary">→ delete</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-toggles me-1"></i> Boolean</button></li>
-								<li><button class="dropdown-item px-2 py-1 active"><i class="bi bi-123 me-1"></i> Number</button></li>
-								<li><hr class="dropdown-divider my-2"></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative"></i> String <span class="text-body-secondary">no quotes</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">'</code>
-								</i> String <span class="text-body-secondary"><code>'</code> quotes</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">""</code>
-								</i> String <span class="text-body-secondary"><code>"</code> quotes</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|</code>
-								</i> String <span class="text-body-secondary"><code>|</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|-</code>
-								</i> String <span class="text-body-secondary"><code>|-</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">|+</code>
-								</i> String <span class="text-body-secondary"><code>|+</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;</code>
-								</i> String <span class="text-body-secondary"><code>&gt;</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;-</code>
-								</i> String <span class="text-body-secondary"><code>&gt;-</code> block</span></button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-alphabet-uppercase me-1 position-relative">
-									<code class="position-absolute top-100 start-100 translate-middle bg-body rounded-circle fw-bolder text-center align-middle fst-normal" style="font-size: 0.6em; margin: -0.5em; 0 0 -0.5em; width: 1.5em; height: 1.5em; line-height: 1.5em;">&gt;+</code>
-								</i> String <span class="text-body-secondary"><code>&gt;+</code> block</span></button></li>
-								<li><hr class="dropdown-divider my-2"></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-ul me-1"></i> List</button></li>
-								<li><button class="dropdown-item px-2 py-1"><i class="bi bi-list-nested me-1"></i> Dict</button></li>
-							</ul>
-							<div class="flex-shrink-2 w-100 p-0">
-								<input class="form-control p-0 w-100 h-100 rounded-0 rounded-end text-end font-monospace" type="number" value="300"/>
-							</div>
-						</div>
+						<Val tundefined/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleString</th>
-					<td class="p-0"></td>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleNull</th>
+					<td class="p-0">
+						<Val tnull/>
+					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">  exampleList</th>
-					<td class="p-0"></td>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleBool</th>
+					<td class="p-0">
+						<Val tbool/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleNumber</th>
+					<td class="p-0">
+						<Val tnumber/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_plain</th>
+					<td class="p-0">
+						<Val tstringplain/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_single</th>
+					<td class="p-0">
+						<Val tstringsingle/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_double</th>
+					<td class="p-0">
+						<Val tstringdouble/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipe</th>
+					<td class="p-0">
+						<Val tstringpipe/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipedash</th>
+					<td class="p-0">
+						<Val tstringpipedash/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipeplus</th>
+					<td class="p-0">
+						<Val tstringpipeplus/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevron</th>
+					<td class="p-0">
+						<Val tstringchevron/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevrondash</th>
+					<td class="p-0">
+						<Val tstringchevrondash/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevronplus</th>
+					<td class="p-0">
+						<Val tstringchevronplus/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleList</th>
+					<td class="p-0">
+						<Val tlist/>
+					</td>
 				</tr>
 
 				{#each { length: 100 } as _}
 					<tr>
-						<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve;">FillMe</th>
+						<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">FillMe</th>
 						<td class="p-0"></td>
 					</tr>
 				{/each}
