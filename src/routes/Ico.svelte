@@ -1,21 +1,25 @@
 <script lang="ts">
-	export let tundefined = false
-	export let tnull = false
-	export let tbool = false
-	export let tnumber = false
+	import { ValType } from "./Val.svelte"
 
-	export let tstringplain = false
-	export let tstringsingle = false
-	export let tstringdouble = false
-	export let tstringpipe = false
-	export let tstringpipedash = false
-	export let tstringpipeplus = false
-	export let tstringchevron = false
-	export let tstringchevrondash = false
-	export let tstringchevronplus = false
+	export let type: ValType
 
-	export let tlist = false
-	export let tdict = false
+	$: tundefined = type == ValType.UNDEFINED
+	$: tnull = type == ValType.NULL
+	$: tbool = type == ValType.BOOL
+	$: tnumber = type == ValType.NUMBER
+
+	$: tstringplain = type == ValType.STRING_PLAIN
+	$: tstringsingle = type == ValType.STRING_SINGLE
+	$: tstringdouble = type == ValType.STRING_DOUBLE
+	$: tstringpipe = type == ValType.STRING_PIPE
+	$: tstringpipedash = type == ValType.STRING_PIPE_DASH
+	$: tstringpipeplus = type == ValType.STRING_PIPE_PLUS
+	$: tstringchevron = type == ValType.STRING_CHEVRON
+	$: tstringchevrondash = type == ValType.STRING_CHEVRON_DASH
+	$: tstringchevronplus = type == ValType.STRING_CHEVRON_PLUS
+
+	$: tlist = type == ValType.LIST
+	$: tdict = type == ValType.DICT
 
 	let className = ""
 	export { className as class }
