@@ -214,91 +214,136 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">exampleDict</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">exampleDict</span>
+					</th>
 					<td class="p-0">
 						<Val tdict/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleUndefined</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleUndefined</span>
+					</th>
 					<td class="p-0">
 						<Val tundefined/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleNull</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleNull</span>
+					</th>
 					<td class="p-0">
 						<Val tnull/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleBool</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleBool</span>
+					</th>
 					<td class="p-0">
 						<Val tbool/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleNumber</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleNumber</span>
+					</th>
 					<td class="p-0">
 						<Val tnumber/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_plain</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_plain</span>
+					</th>
 					<td class="p-0">
 						<Val tstringplain/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_single</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_single</span>
+					</th>
 					<td class="p-0">
 						<Val tstringsingle/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_double</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_double</span>
+					</th>
 					<td class="p-0">
 						<Val tstringdouble/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipe</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipe</span>
+					</th>
 					<td class="p-0">
 						<Val tstringpipe/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipedash</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipedash</span>
+					</th>
 					<td class="p-0">
 						<Val tstringpipedash/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipeplus</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_pipeplus</span>
+					</th>
 					<td class="p-0">
 						<Val tstringpipeplus/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevron</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevron</span>
+					</th>
 					<td class="p-0">
 						<Val tstringchevron/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevrondash</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevrondash</span>
+					</th>
 					<td class="p-0">
 						<Val tstringchevrondash/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevronplus</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleString_chevronplus</span>
+					</th>
 					<td class="p-0">
 						<Val tstringchevronplus/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleList</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox" checked disabled/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">  exampleList</span>
+					</th>
 					<td class="p-0">
 						<Val tlist/>
 					</td>
@@ -306,7 +351,10 @@
 
 				{#each { length: 100 } as _}
 					<tr>
-						<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">FillMe</th>
+					<th scope="row" class="position-sticky start-0 z-2 bg-secondary-subtle text-nowrap">
+						<input class="d-inline form-check-input TreeExpand" type="checkbox"/>
+						<span class="font-monospace fw-normal" style="white-space: preserve; text-wrap: nowrap;">FillMe</span>
+					</th>
 						<td class="p-0"></td>
 					</tr>
 				{/each}
@@ -321,3 +369,14 @@
 
 	</div>
 </div>
+
+<style>
+	input[type="checkbox"].TreeExpand {
+		border: none;
+		background-color: transparent;
+		--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8 M10 6v8'/%3e%3c/svg%3e");
+	}
+	input[type="checkbox"].TreeExpand:checked {
+		--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+	}
+</style>

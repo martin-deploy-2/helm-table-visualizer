@@ -67,3 +67,13 @@
 		{/if}
 	</div>
 </div>
+
+<style>
+	input[type="checkbox"] {
+		--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6.5 6.5L13.5 13.5M13.5 6.5L6.5 13.5'/%3e%3c/svg%3e");
+	}
+	input[type="checkbox"]:checked {
+		background-color: var(--bs-success-border-subtle);
+		border-color: var(--bs-success-border-subtle);
+	}
+</style>
