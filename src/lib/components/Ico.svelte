@@ -3,6 +3,9 @@
 
 	export let type: ValType
 
+	let className = ""
+	export { className as class }
+
 	$: tundefined = type == ValType.UNDEFINED
 	$: tnull = type == ValType.NULL
 	$: tbool = type == ValType.BOOL
@@ -20,9 +23,6 @@
 
 	$: tlist = type == ValType.LIST
 	$: tdict = type == ValType.DICT
-
-	let className = ""
-	export { className as class }
 </script>
 
 {#if tundefined }

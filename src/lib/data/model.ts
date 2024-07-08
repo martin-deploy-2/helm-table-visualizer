@@ -1,24 +1,26 @@
-/** Opaque type. */
+/**
+ * Opaque type to identify a source of values in a Helm chart.
+ */
 export interface ValuesSource {}
 
 export function valuesSourceFromSubChartValuesSchemaJson(subChartName: string): ValuesSource {
-	return ["1", subChartName]
+	return [1, subChartName]
 }
 
 export function valuesSourceFromSubChartDefaultValuesYaml(subChartName: string): ValuesSource {
-	return ["2", subChartName]
+	return [2, subChartName]
 }
 
 export function valuesSourceFromValuesSchemaJson(): ValuesSource {
-	return ["3"]
+	return [3]
 }
 
 export function valuesSourceFromDefaultValuesYaml(): ValuesSource {
-	return ["4"]
+	return [4]
 }
 
 export function valuesSourceFromOverlayValuesYaml(path: string): ValuesSource {
-	return ["5", path]
+	return [5, path, false]
 }
 
 export interface ExternalInteractor {
@@ -37,10 +39,8 @@ export interface ExternalInteractor {
 	removeValues(source: ValuesSource): void
 
 	renameOverlayValuesYaml(oldPath: string, newPath: string): void
-	moveOverlayValuesYaml(path: string, newIndex: number): void
-	enableOverlayValuesYaml(path: string): void
-	disableOverlayValuesYaml(path: string): void
 
+	onOverlayValuesYamlGlobPatternEdited(callback: (globPattern: string) => void): Disposable
 	onValueEdited(callback: (source: ValuesSource, keyPath: ReadonlyArray<string>, newValue: any) => void): Disposable
 }
 
@@ -53,6 +53,28 @@ export interface InternalInteractor {
 		readonly alias: string
 		readonly subChartName: string
 	}>
+
+	readonly valuesFromDependenciesSchema: ReadonlyArray<{
+		readonly alias: string
+		readonly path: string
+	}>
+
+	readonly valuesFromDependenciesDefaultValues: ReadonlyArray<{
+		readonly alias: string
+		readonly path: string
+	}>
+
+	readonly valuesFromChartSchema: boolean
+	readonly valuesFromChartDefaultValues: boolean
+
+	readonly valuesFromChartOverlayValues: ReadonlyArray<{
+		enabled: boolean
+		readonly path: string
+	}>
+
+	overlayValuesYamlGlobPattern: string
+
+	moveOverlayValuesYaml(source: ValuesSource, newIndex: number): void
 
 	readonly valuesSources: ReadonlyArray<ValuesSource>
 	readonly keyPaths: ReadonlyArray<ReadonlyArray<string>>

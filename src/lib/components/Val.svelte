@@ -1,38 +1,12 @@
-<script context="module" lang="ts">
-	export enum ValType {
-		UNDEFINED = "undefined",
-		NULL = "null",
-		BOOL = "bool",
-		NUMBER = "number",
-		STRING_PLAIN = "stringplain",
-		STRING_SINGLE = "stringsingle",
-		STRING_DOUBLE = "stringdouble",
-		STRING_PIPE = "stringpipe",
-		STRING_PIPE_DASH = "stringpipedash",
-		STRING_PIPE_PLUS = "stringpipeplus",
-		STRING_CHEVRON = "stringchevron",
-		STRING_CHEVRON_DASH = "stringchevrondash",
-		STRING_CHEVRON_PLUS = "stringchevronplus",
-		LIST = "list",
-		DICT = "dict",
-	}
-
-	export type ValValue =
-		| undefined
-		| null
-		| boolean
-		| number
-		| string
-		| Array<any>
-		| Record<string, any>
-</script>
-
 <script lang="ts">
 	import Ico from "./Ico.svelte"
 
 	export let type: ValType
 	export let value: ValValue
 	export let isFromFallback: boolean
+
+	let className = ""
+	export { className as class }
 
 	$: tundefined = type == ValType.UNDEFINED
 	$: tnull = type == ValType.NULL
@@ -53,9 +27,6 @@
 
 	$: tlist = type == ValType.LIST
 	$: tdict = type == ValType.DICT
-
-	let className = ""
-	export { className as class }
 </script>
 
 <div class="dropend d-flex flex-row align-items-stretch {className}" style="min-height: 100%; border-bottom: 1px solid transparent; border-right: 1px solid transparent;">
