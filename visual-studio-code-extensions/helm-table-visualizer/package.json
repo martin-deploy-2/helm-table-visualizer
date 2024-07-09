@@ -4,7 +4,7 @@
   "description": "",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.54.0"
+    "vscode": "^1.91.0"
   },
   "categories": [
     "Other"
@@ -14,8 +14,10 @@
   "contributes": {
     "commands": [
       {
-        "command": "helm-table-visualizer.helloWorld",
-        "title": "Hello World"
+        "category": "Helm Table Visualizer",
+        "title": "Open Preview for Chart",
+        "command": "helmTableVisualizer.commands.openPreviewForChart",
+        "enablement": "editorLangId == 'yaml' || editorLangId == 'helm'"
       }
     ]
   },
