@@ -15,8 +15,7 @@
 			"outFiles": [
 				"${workspaceFolder}/visual-studio-code-extensions/helm-table-visualizer/dist/**/*.js"
 			],
-			"preLaunchTask": "${defaultBuildTask}",
-      "cwd": "${workspaceFolder}/visual-studio-code-extensions/helm-table-visualizer"
+			"preLaunchTask": "${defaultBuildTask}"
 		}
 	]
 }

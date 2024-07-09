@@ -27,7 +27,8 @@
       "presentation": {
         "group": "watch",
         "reveal": "never"
-      }
+      },
+      "path": "visual-studio-code-extensions/helm-table-visualizer"
     },
     {
       "type": "npm",
@@ -39,7 +40,8 @@
       "presentation": {
         "group": "watch",
         "reveal": "never"
-      }
+      },
+      "path": "visual-studio-code-extensions/helm-table-visualizer"
     },
     {
       "type": "npm",
@@ -50,7 +52,8 @@
         "reveal": "never",
         "group": "watchers"
       },
-      "group": "build"
+      "group": "build",
+      "path": "visual-studio-code-extensions/helm-table-visualizer"
     },
     {
       "label": "tasks: watch-tests",
