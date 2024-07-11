@@ -30,13 +30,19 @@ export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Dis
   if (activeTextEditor) {
     const activeEditorWorkspacePath = vscode.workspace.getWorkspaceFolder(activeTextEditor.document.uri)?.uri.path ?? ""
 
-    const filePath = activeTextEditor.document.uri.path.startsWith(activeEditorWorkspacePath)
-      ? activeTextEditor.document.uri.path.substring(activeEditorWorkspacePath.length)
-      : activeTextEditor.document.uri.path
+    let yamlFile = activeTextEditor.document.uri.path
+
+    if (activeEditorWorkspacePath && yamlFile.startsWith(activeEditorWorkspacePath)) {
+      yamlFile = yamlFile.substring(activeEditorWorkspacePath.length)
+    }
+
+    if (yamlFile.startsWith("/")) {
+      yamlFile = yamlFile.substring(1)
+    }
 
     panel.webview.postMessage({
-      file: filePath,
-      yaml: yaml.load(activeTextEditor.document.getText(), { filename: filePath })
+      yamlFile: yamlFile,
+      yaml: yaml.load(activeTextEditor.document.getText(), { filename: yamlFile })
     })
 
     context.subscriptions.push(
@@ -46,8 +52,8 @@ export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Dis
         }
 
         panel.webview.postMessage({
-          file: filePath,
-          yaml: yaml.load(activeTextEditor.document.getText(), { filename: filePath })
+          yamlFile: yamlFile,
+          yaml: yaml.load(activeTextEditor.document.getText(), { filename: yamlFile })
         })
       })
     )
