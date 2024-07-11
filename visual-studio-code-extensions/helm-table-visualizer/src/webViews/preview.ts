@@ -18,7 +18,6 @@ export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Dis
         <meta charset="UTF-8"/>
         <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${panel.webview.cspSource}; script-src 'unsafe-inline' ${panel.webview.cspSource}; style-src 'unsafe-inline' ${panel.webview.cspSource};"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>${panel.title}</title>
         <script defer src="${panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, "assets", "webViews", "preview", "main.js"))}"></script>
       </head>
       <body>
@@ -40,6 +39,7 @@ export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Dis
       yamlFile = yamlFile.substring(1)
     }
 
+    panel.title = yamlFile
     panel.webview.postMessage({
       yamlFile: yamlFile,
       yaml: yaml.load(activeTextEditor.document.getText(), { filename: yamlFile })
@@ -51,6 +51,7 @@ export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Dis
           return
         }
 
+        panel.title = yamlFile
         panel.webview.postMessage({
           yamlFile: yamlFile,
           yaml: yaml.load(activeTextEditor.document.getText(), { filename: yamlFile })

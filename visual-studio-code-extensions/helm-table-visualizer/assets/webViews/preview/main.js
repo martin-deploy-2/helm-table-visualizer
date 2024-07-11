@@ -24,12 +24,11 @@ function updateData(data) {
 
 function Table({ yamlFile, yaml }) {
   return /* html */ `
-    <h1>${ yamlFile }</h1>
-    <table style="width: 100%;">
+    <table>
       <thead style="text-align: left;">
         <tr>
-          <th>Key</th>
-          <th>Value</th>
+          <th style="position: sticky; top: 0; left: 0; z-index: 10; background: var(--vscode-editorStickyScrollHover-background); border-bottom: 2px solid var(--vscode-tree-tableColumnsBorder); min-width: 200px;">Key</th>
+          <th style="position: sticky; top: 0; background: var(--vscode-editorStickyScrollHover-background); border-bottom: 2px solid var(--vscode-tree-tableColumnsBorder); min-width: 300px;">Value</th>
         </tr>
       </thead>
       <tbody>
@@ -44,8 +43,8 @@ function Tr({ key, value, depth = 0 }) {
 
   return /* html */ `
     <tr>
-      <td style="padding-left: ${ depth }em;"><code style="white-space: preserve;">${ key }</code></td>
-      <td>${
+      <td style="position: sticky; left: 0; background: var(--vscode-editorStickyScroll-background); border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder); padding-left: ${ depth }em; vertical-align: top;"><code style="white-space: preserve; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); background: none;">${ key }</code></td>
+      <td style="border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder);">${
         value === undefined       ? TdUndefined({ value }) :
         value === null            ? TdNull({ value }) :
         typeof value == "boolean" ? TdBool({ value }) :
@@ -61,29 +60,29 @@ function Tr({ key, value, depth = 0 }) {
 }
 
 function TdUndefined({ value }) {
-  return /* html */ `undefined`
+  return /* html */ `<input style="text-align: center; color: var(--vscode-charts-lines); border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-editor-foreground); background: var(--vscode-editor-background);" type="text" value="?" readonly/>`
 }
 
 function TdNull({ value }) {
-  return /* html */ `null`
+  return /* html */ `<input style="text-align: center; border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-red); background: var(--vscode-editor-background);" type="text" value="~" readonly/>`
 }
 
 function TdNumber({ value }) {
-  return /* html */ `<input type="number" value="${ value }"/>`
+  return /* html */ `<input style="border: none; width: 100%; height: 100%; text-align: right; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-green); background: var(--vscode-editor-background);" type="number" value="${ value }" readonly/>`
 }
 
 function TdString({ value }) {
-  return /* html */ `<textarea>${ value }</textarea>`
+  return /* html */ `<div style="min-width: 100%; min-height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-orange); background: var(--vscode-editor-background); text-wrap: nowrap; white-space: preserve;" role="textbox">${ value }</div>`
 }
 
 function TdBool({ value }) {
-  return /* html */ `<input type="checkbox" ${ value ? "checked" : "" }/>`
+  return /* html */ `<input style="min-width: 100%; min-height: 100%; background: var(--vscode-charts-blue);" type="checkbox" ${ value ? "checked" : "" } onclick="return false;"/>`
 }
 
 function TdList({ value }) {
-  return /* html */ `list`
+  return /* html */ `<input style="text-align: center; border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-yellow); background: var(--vscode-editor-background);" type="text" value="[]" readonly/>`
 }
 
 function TdDict({ value }) {
-  return /* html */ `dict`
+  return /* html */ `<input style="text-align: center; border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-purple); background: var(--vscode-editor-background);" type="text" value="{}" readonly/>`
 }
