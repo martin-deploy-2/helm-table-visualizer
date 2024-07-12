@@ -1,0 +1,41 @@
+﻿2024-07-12T14:39:57.258Z
+PASS () => Key.areEqual(undefined, undefined)
+PASS () => !Key.areEqual(undefined, null)
+PASS () => !Key.areEqual(undefined, Key.root())
+PASS () => !Key.areEqual(null, undefined)
+PASS () => Key.areEqual(null, null)
+PASS () => !Key.areEqual(null, Key.root())
+PASS () => !Key.areEqual(Key.root(), undefined)
+PASS () => !Key.areEqual(Key.root(), null)
+PASS () => Key.areEqual(Key.root(), Key.root())
+PASS () => !Key.areEqual(new Key([], 0), new Key([], 1))
+PASS () => Key.areEqual(new Key([], 1), new Key([], 1))
+PASS () => !Key.areEqual(new Key(["a"], 0), new Key(["b"], 0))
+PASS () => Key.areEqual(new Key(["b"], 0), new Key(["b"], 0))
+PASS () => !Key.areEqual(new Key(["a", "b", "c"], 0), new Key(["a", "b", "d"], 0))
+PASS () => Key.areEqual(new Key(["a", "b", "d"], 0), new Key(["a", "b", "d"], 0))
+PASS () => !Key.areEqual(new Key(["a"], 0, { "b": new Key(["a", "b"], 0) }), new Key(["a"], 0, { "c": new Key(["a", "c"], 0) }))
+PASS () => Key.areEqual(new Key(["a"], 0, { "c": new Key(["a", "c"], 0) }), new Key(["a"], 0, { "c": new Key(["a", "c"], 0) }))
+PASS () => !Key.areEqual(new Key(["a"], 0, { "b": new Key(["a", "b"], 0, { "c": new Key(["a", "b", "c"], 0) }) }), new Key(["a"], 0, { "b": new Key(["a", "b"], 0, { "d": new Key(["a", "b", "d"], 0) }) }))
+PASS () => Key.areEqual(new Key(["a"], 0, { "b": new Key(["a", "b"], 0, { "d": new Key(["a", "b", "d"], 0) }) }), new Key(["a"], 0, { "b": new Key(["a", "b"], 0, { "d": new Key(["a", "b", "d"], 0) }) }))
+PASS () => Key.root().addChild("a").order == 0
+PASS () => Key.root().addChild("a", 10).order == 10
+PASS () => Key.root().addChild("a", 10).addChild("b").order == 0
+PASS (k = Key.root()) => k.addChild("a").order == 0 && k.addChild("b").order == 1
+PASS (k = Key.root()) => k.addChild("a", 10).order == 10 && k.addChild("b").order == 1
+PASS (k = Key.root()) => k.addChild("a", 10).order == 10 && k.addChild("a").order == 10
+PASS (k = Key.root()) => k.addChild("a", 10).order == 10 && k.addChild("a", 5).order == 10
+PASS (k = Key.root()) => k.addChild("a", 10).order == 10 && k.addChild("a", 20).order == 20
+PASS (k = Key.root()) => k.addChild("a").path.join(".") == "a"
+PASS (k = Key.root()) => k.addChild("a").addChild("b").path.join(".") == "a.b"
+PASS (k = Key.root()) => k.addChild("a").addChild("b").addChild("c").path.join(".") == "a.b.c"
+PASS Empty
+PASS Single dict, no depth
+PASS Single dict, nested depth
+PASS Single dict, recursive depth
+PASS Multiple dicts, no overlap, no depth
+PASS Multiple dicts, no overlap, nested depth
+PASS Multiple dicts, no overlap, recursive depth
+PASS Multiple dicts, overlap, no depth
+PASS Multiple dicts, overlap, nested depth
+PASS Multiple dicts, overlap, recursive depth
