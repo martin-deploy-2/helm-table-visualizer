@@ -3,7 +3,7 @@ import * as yaml from "js-yaml"
 
 export const id = "helmTableVisualizer.webViews.preview"
 
-export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Disposable {
+export function createWebviewPanel(context: vscode.ExtensionContext) {
   const panel = vscode.window.createWebviewPanel(id, "Helm Table Visualizer", {
     viewColumn: vscode.ViewColumn.Active
   }, {
@@ -27,37 +27,68 @@ export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Dis
 
   const activeTextEditor = vscode.window.activeTextEditor
   if (activeTextEditor) {
-    const activeEditorWorkspacePath = vscode.workspace.getWorkspaceFolder(activeTextEditor.document.uri)?.uri.path ?? ""
+    const activeDocument = activeTextEditor.document
+    const activeDocumentWorkspaceFolderPath = vscode.workspace.getWorkspaceFolder(activeDocument.uri)?.uri.path ?? ""
 
-    let yamlFile = activeTextEditor.document.uri.path
+    let promiseOfChart = findChartFolderUriAsync(vscode.Uri.joinPath(activeDocument.uri, ".."))
+    let promiseOfYamlDocuments = promiseOfChart.then(chart => {
+      if (chart == null) {
+        return Promise.resolve([activeDocument])
+      }
 
-    if (activeEditorWorkspacePath && yamlFile.startsWith(activeEditorWorkspacePath)) {
-      yamlFile = yamlFile.substring(activeEditorWorkspacePath.length)
-    }
+      let promiseOfValuesYamlUris = vscode.workspace.findFiles(new vscode.RelativePattern(chart, "values{*,/**/*}.yaml"))
+      let promiseOfValuesYamlDocuments = promiseOfValuesYamlUris.then(valuesYaml => {
+        return Promise.all(
+          valuesYaml.map(vscode.workspace.openTextDocument)
+        )
+      })
 
-    if (yamlFile.startsWith("/")) {
-      yamlFile = yamlFile.substring(1)
-    }
-
-    panel.title = yamlFile
-    panel.webview.postMessage({
-      yamlFile: yamlFile,
-      yaml: yaml.load(activeTextEditor.document.getText(), { filename: yamlFile })
+      return promiseOfValuesYamlDocuments
     })
 
-    context.subscriptions.push(
-      vscode.workspace.onDidChangeTextDocument(e => {
-        if (e.document != activeTextEditor.document) {
-          return
+    function pathOf(p: string): string {
+      if (p.startsWith(activeDocumentWorkspaceFolderPath)) {
+        p = p.substring(activeDocumentWorkspaceFolderPath.length)
+      }
+
+      if (p.startsWith("/")) {
+        p = p.substring(1)
+      }
+
+      return p
+    }
+
+    Promise.all([promiseOfChart, promiseOfYamlDocuments]).then(([chartUri, yamlDocuments]) => {
+      function up() {
+        const m = {
+          chartFolder: pathOf(chartUri?.path ?? "(No chart)"),
+          chartName: chartUri?.path.split("/").at(-1) ?? "(No chart)",
+          valuesFiles: yamlDocuments.map(v => ({
+            path: pathOf(v.uri.path),
+            data: yaml.load(v.getText(), { filename: v.uri.path })
+          }))
         }
 
-        panel.title = yamlFile
-        panel.webview.postMessage({
-          yamlFile: yamlFile,
-          yaml: yaml.load(activeTextEditor.document.getText(), { filename: yamlFile })
+        panel.title = m.chartFolder ?? pathOf(activeDocument.uri.path)
+        panel.webview.postMessage(m)
+      }
+
+      up()
+
+      context.subscriptions.push(
+        vscode.workspace.onDidChangeTextDocument(e => {
+          if (yamlDocuments.indexOf(e.document) == -1) {
+            return
+          }
+
+          up()
         })
-      })
-    )
+      )
+    })
+
+    Promise.all([promiseOfChart, promiseOfYamlDocuments]).catch(error => {
+      vscode.window.showErrorMessage(JSON.stringify(error, undefined, 2))
+    })
   }
 
   context.subscriptions.push(
@@ -72,5 +103,26 @@ export function createWebviewPanel(context: vscode.ExtensionContext): vscode.Dis
     })
   )
 
-  return panel
+  context.subscriptions.push(
+    panel
+  )
+}
+
+function findChartFolderUriAsync(folder: vscode.Uri): PromiseLike<vscode.Uri | null> {
+  let promiseOfChartYaml = vscode.workspace.findFiles(new vscode.RelativePattern(folder, "Chart.yaml"))
+  let promiseOfChartFolder = promiseOfChartYaml.then(chartYaml => {
+    if (chartYaml.length) {
+      return folder
+    }
+
+    const parentFolder = vscode.Uri.joinPath(folder, "..")
+
+    if (parentFolder.toString() == folder.toString()) {
+      return null
+    }
+
+    return findChartFolderUriAsync(parentFolder)
+  })
+
+  return promiseOfChartFolder
 }

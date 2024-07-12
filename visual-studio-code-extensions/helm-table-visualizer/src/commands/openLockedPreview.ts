@@ -5,8 +5,6 @@ export const id = "helmTableVisualizer.commands.openLockedPreview"
 
 export function getCallback(context: vscode.ExtensionContext) {
   return () => {
-    context.subscriptions.push(
-      preview.createWebviewPanel(context)
-    )
+    preview.createWebviewPanel(context)
   }
 }
