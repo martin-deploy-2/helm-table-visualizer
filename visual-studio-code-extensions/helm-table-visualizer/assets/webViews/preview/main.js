@@ -25,7 +25,7 @@ class Key {
     if (a.order != b.order) return false
     if (a.path.join("\0") != b.path.join("\0")) return false
 
-    let sck = new Set < string > ((Object.keys(a.children)))
+    let sck = new Set((Object.keys(a.children)))
 
     for (let [bck, bcv] of Object.entries(b.children)) {
       if (!sck.has(bck)) return false
@@ -142,7 +142,7 @@ function Table({ chartFolder, chartName, valuesFiles }) {
         </tr>
       </thead>
       <tbody>
-        ${ Object.entries(keys).map(([_, key]) => Tr({ key, valuesFiles })).join("") }
+        ${ Object.entries(keys).sort(([_, a], [__, b]) => a.order - b.order).map(([_, key]) => Tr({ key, valuesFiles })).join("") }
       </tbody>
     </table>
   `
@@ -172,7 +172,7 @@ function Tr({ key, valuesFiles }) {
         `
       }).join("") }
     </tr>
-    ${ key.expanded ? Object.entries(key.children).map(([_, childKey]) => Tr({ key: childKey, valuesFiles })).join("") : "" }
+    ${ key.expanded ? Object.entries(key.children).sort(([_, a], [__, b]) => a.order - b.order).map(([_, childKey]) => Tr({ key: childKey, valuesFiles })).join("") : "" }
     `
 }
 

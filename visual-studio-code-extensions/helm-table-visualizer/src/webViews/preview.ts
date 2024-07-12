@@ -65,7 +65,7 @@ export function createWebviewPanel(context: vscode.ExtensionContext) {
           chartName: chartUri?.path.split("/").at(-1) ?? "(No chart)",
           valuesFiles: yamlDocuments.map(v => ({
             path: pathOf(v.uri.path),
-            data: yaml.load(v.getText(), { filename: v.uri.path })
+            data: yaml.load(v.getText(), { filename: v.uri.path }) ?? {}
           }))
         }
 
