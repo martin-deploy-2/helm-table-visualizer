@@ -6,6 +6,7 @@
     {
       "label": "watch",
       "dependsOn": [
+        "npm: watch:webview",
         "npm: watch:tsc",
         "npm: watch:esbuild"
       ],
@@ -16,6 +17,20 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "type": "npm",
+      // "script": "watch:webview",
+      "script": "front:build",
+      "group": "build",
+      // "problemMatcher": [],
+      "isBackground": true,
+      "label": "npm: watch:webview",
+      "presentation": {
+        "group": "watch",
+        "reveal": "never"
+      },
+      "path": "visual-studio-code-extensions/vssvelte"
     },
     {
       "type": "npm",

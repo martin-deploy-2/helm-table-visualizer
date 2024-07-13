@@ -1,3 +1,4 @@
+import * as fs from "fs"
 import * as vscode from "vscode"
 
 export function activate(context: vscode.ExtensionContext) {
@@ -9,18 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
         enableScripts: true
       })
 
-      panel.webview.html = /* html */ `
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          </head>
-          <body>
-            <h1>Hibou</h1>
-          </body>
-        </html>
-      `
+      panel.webview.html = fs.readFileSync(vscode.Uri.joinPath(context.extensionUri, "src-webview", "dist", "index.html").with({ scheme: "vscode-resource" }).fsPath, "utf8")
 
       context.subscriptions.push(
         panel

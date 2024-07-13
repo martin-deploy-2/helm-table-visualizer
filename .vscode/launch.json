@@ -13,7 +13,7 @@
         "--extensionDevelopmentPath=${workspaceFolder}/visual-studio-code-extensions/vssvelte"
       ],
       "outFiles": [
-        "${workspaceFolder}/visual-studio-code-extensions/vssvelte/out/**/*.js"
+        "${workspaceFolder}/visual-studio-code-extensions/vssvelte/dist/**/*.js"
       ],
       "preLaunchTask": "${defaultBuildTask}"
     }
