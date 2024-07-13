@@ -16,14 +16,35 @@
     ]
   },
   "scripts": {
-    "install:all": "npm install && cd webview-ui && npm install",
-    "start:webview": "cd webview-ui && npm run dev",
+
+"front:install": "cd webview-ui && npm install",
+"front:dev": "cd webview-ui && vite dev",
+"front:lint": "cd webview-ui && prettier --check . && eslint . && svelte-check --tsconfig ./tsconfig.json",
+"front:build": "cd webview-ui && vite build",
+"front:test": "cd webview-ui && vitest",
+"back:install": "npm install",
+"back:lint": "tsc --noEmit && eslint src --ext ts",
+"back:build": "node esbuild.js",
+"back:test": "vscode-test",
+"ext:install": "npm run back:install && npm run front:install",
+"ext:f5": "npm run front:build",
+"watch:esbuild": "node esbuild.js --watch",
+"watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+"ext:test": "npm run back:test && npm run front:test",
+"ext:publish": "npm run front:lint && npm run front:build && npm run front:test && npm run back:lint && npm run back:test && node esbuild.js --production",
+
+
+
+
+    "F5MF": "npm run build:webview && npm run pretest",
     "build:webview": "cd webview-ui && npm run build",
-    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "install:all": "npm install && cd webview-ui && npm install",
+    "lint": "eslint src --ext ts",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts"
+    "start:webview": "cd webview-ui && npm run dev",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",

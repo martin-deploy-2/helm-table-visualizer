@@ -24,14 +24,14 @@
 	function handleHowdyClick() {
 		vscode.postMessage({
 			command: "hello",
-			text: "Hey there partner! 🤠",
+			text: "Hiya",
 		});
 	}
 </script>
 
 <main>
 	<h1>Hello world!</h1>
-	<vscode-button on:click={handleHowdyClick}>Howdy!</vscode-button>
+	<vscode-button on:click={handleHowdyClick}>Hiya</vscode-button>
 </main>
 
 <style>
