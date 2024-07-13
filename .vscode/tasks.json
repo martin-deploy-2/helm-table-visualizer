@@ -28,7 +28,7 @@
         "group": "watch",
         "reveal": "never"
       },
-      "path": "visual-studio-code-extensions/helm-table-visualizer"
+      "path": "visual-studio-code-extensions/svelte"
     },
     {
       "type": "npm",
@@ -41,7 +41,7 @@
         "group": "watch",
         "reveal": "never"
       },
-      "path": "visual-studio-code-extensions/helm-table-visualizer"
+      "path": "visual-studio-code-extensions/svelte"
     },
     {
       "type": "npm",
@@ -53,7 +53,7 @@
         "group": "watchers"
       },
       "group": "build",
-      "path": "visual-studio-code-extensions/helm-table-visualizer"
+      "path": "visual-studio-code-extensions/svelte"
     },
     {
       "label": "tasks: watch-tests",

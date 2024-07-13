@@ -3,19 +3,32 @@
 // Hover to view descriptions of existing attributes.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Run Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}/visual-studio-code-extensions/helm-table-visualizer"
-			],
-			"outFiles": [
-				"${workspaceFolder}/visual-studio-code-extensions/helm-table-visualizer/dist/**/*.js"
-			],
-			"preLaunchTask": "${defaultBuildTask}"
-		}
-	]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/visual-studio-code-extensions/svelte"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/visual-studio-code-extensions/svelte/out/**/*.js"
+      ],
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Test Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/visual-studio-code-extensions/svelte",
+        "--extensionTestsPath=${workspaceFolder}/visual-studio-code-extensions/svelte/out/test/suite/index"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/visual-studio-code-extensions/svelte/out/test/**/*.js"
+      ],
+      "preLaunchTask": "${defaultBuildTask}"
+    }
+  ]
 }
