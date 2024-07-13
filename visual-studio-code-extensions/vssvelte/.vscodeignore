@@ -12,3 +12,17 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+
+# Ignore all src-webview files except the build directory
+src-webview/node_modules/**
+src-webview/public/**
+src-webview/src/**
+src-webview/.gitignore
+src-webview/index.html
+src-webview/package.json
+src-webview/package-lock.json
+src-webview/README.md
+src-webview/svelte.config.js
+src-webview/tsconfig.json
+src-webview/tsconfig.node.json
+src-webview/vite.config.ts
