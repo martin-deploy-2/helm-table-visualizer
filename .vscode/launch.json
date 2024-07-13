@@ -10,23 +10,10 @@
       "type": "extensionHost",
       "request": "launch",
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/visual-studio-code-extensions/svelte"
+        "--extensionDevelopmentPath=${workspaceFolder}/visual-studio-code-extensions/vssvelte"
       ],
       "outFiles": [
-        "${workspaceFolder}/visual-studio-code-extensions/svelte/out/**/*.js"
-      ],
-      "preLaunchTask": "${defaultBuildTask}"
-    },
-    {
-      "name": "Test Extension",
-      "type": "extensionHost",
-      "request": "launch",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/visual-studio-code-extensions/svelte",
-        "--extensionTestsPath=${workspaceFolder}/visual-studio-code-extensions/svelte/out/test/suite/index"
-      ],
-      "outFiles": [
-        "${workspaceFolder}/visual-studio-code-extensions/svelte/out/test/**/*.js"
+        "${workspaceFolder}/visual-studio-code-extensions/vssvelte/out/**/*.js"
       ],
       "preLaunchTask": "${defaultBuildTask}"
     }

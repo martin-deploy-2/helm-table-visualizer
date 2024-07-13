@@ -28,7 +28,7 @@
         "group": "watch",
         "reveal": "never"
       },
-      "path": "visual-studio-code-extensions/svelte"
+      "path": "visual-studio-code-extensions/vssvelte"
     },
     {
       "type": "npm",
@@ -41,7 +41,7 @@
         "group": "watch",
         "reveal": "never"
       },
-      "path": "visual-studio-code-extensions/svelte"
+      "path": "visual-studio-code-extensions/vssvelte"
     },
     {
       "type": "npm",
@@ -53,7 +53,7 @@
         "group": "watchers"
       },
       "group": "build",
-      "path": "visual-studio-code-extensions/svelte"
+      "path": "visual-studio-code-extensions/vssvelte"
     },
     {
       "label": "tasks: watch-tests",
