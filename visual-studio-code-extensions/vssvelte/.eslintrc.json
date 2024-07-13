@@ -19,11 +19,13 @@
         ]
       }
     ],
-    "@typescript-eslint/semi": "warn",
+    "@typescript-eslint/semi": "off",
     "curly": "warn",
-    "eqeqeq": "warn",
+    "eqeqeq": "off",
     "no-throw-literal": "warn",
-    "semi": "off"
+    "semi": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off"
   },
   "ignorePatterns": [
     "out",
