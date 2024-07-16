@@ -110,11 +110,7 @@ main()
  * @param {(newState: any) => void} vscode.setState
  */
 function main(vscode = acquireVsCodeApi()) {
-  updateData(vscode.getState() ?? {
-    chartFolder: "(No chart)",
-    chartName: "(No chart)",
-    valuesFiles: []
-  })
+  updateData()
 
   window.addEventListener("message", ({ data }) => {
     vscode.setState(data)
@@ -173,7 +169,7 @@ function Tr({ key, valuesFiles }) {
       }).join("") }
     </tr>
     ${ key.expanded ? Object.entries(key.children).sort(([_, a], [__, b]) => a.order - b.order).map(([_, childKey]) => Tr({ key: childKey, valuesFiles })).join("") : "" }
-    `
+  `
 }
 
 /**
