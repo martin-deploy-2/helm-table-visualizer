@@ -12,6 +12,7 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+/icon.svg
 
 # Ignore all src-webview files except the build directory
 src-webview/node_modules/**
