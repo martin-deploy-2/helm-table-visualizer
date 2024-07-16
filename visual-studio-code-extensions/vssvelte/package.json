@@ -14,8 +14,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "todo--give-a-name-to-the-extension.helloWorld",
-        "title": "Hello World"
+        "category": "Helm Table Visualizer",
+        "title": "Open Preview",
+        "command": "helmTableVisualizer.commands.openPreview",
+        "enablement": "editorLangId == 'yaml' || editorLangId == 'helm'"
+      },
+      {
+        "category": "Helm Table Visualizer",
+        "title": "Open Locked Preview",
+        "command": "helmTableVisualizer.commands.openLockedPreview",
+        "enablement": "editorLangId == 'yaml' || editorLangId == 'helm'"
       }
     ]
   },

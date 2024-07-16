@@ -1,5 +1,6 @@
-import "./app.css"
-import App from "./App.svelte"
+import "./main.css"
+
+import App from "./lib/components/App.svelte"
 
 export default new App({
   target: document.getElementById("app")!
