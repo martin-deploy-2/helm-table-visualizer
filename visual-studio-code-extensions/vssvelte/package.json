@@ -16,7 +16,14 @@
     "helm"
   ],
   "license": "MIT",
-  "icon": "./icon.png",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martin-deploy-2/helm-table-visualizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martin-deploy-2/helm-table-visualizer/issues"
+  },
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
