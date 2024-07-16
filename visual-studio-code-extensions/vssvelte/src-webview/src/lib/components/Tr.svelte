@@ -1,7 +1,7 @@
 <script lang="ts">
   import dig from "../utilities/dig"
+  import type Key from "../utilities/Key"
   import Td from "./Td.svelte"
-  import type Key from "../utilities/key"
 
   export let key: Key
   export let valuesFiles: Array<{

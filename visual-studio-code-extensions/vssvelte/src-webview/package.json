@@ -8,6 +8,7 @@
     "build": "vite build",
     "watch": "vite build --watch",
     "preview": "vite preview",
+    "test": "npm run check",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {

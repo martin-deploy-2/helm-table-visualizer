@@ -2,7 +2,7 @@
   "name": "helm-table-visualizer",
   "displayName": "Helm Table Visualizer",
   "description": "TODO: Give a description to the extension",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.91.0"
   },
@@ -31,16 +31,13 @@
     "ext:install": "npm run front:install && npm run back:install",
     "ext:test": "npm run front:test && npm run back:test",
     "ext:package": "npm run front:build && npm run back:build",
-
     "front:install": "cd src-webview && npm install",
-    "front:test": "cd src-webview && npm run check",
+    "front:test": "cd src-webview && npm run test",
     "front:build": "cd src-webview && npm run build",
     "front:dev": "cd src-webview && npm run dev",
-
     "back:install": "npm install",
     "back:test": "npm run pretest && npm run test",
     "back:build": "npm run package",
-
     "watch:webview": "cd src-webview && npm run watch",
     "vscode:prepublish": "npm run package",
     "compile": "npm run check-types && npm run lint && node esbuild.js",
@@ -64,6 +61,7 @@
     "@typescript-eslint/parser": "^7.11.0",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.4.0",
+    "@vscode/vsce": "^2.30.0",
     "esbuild": "^0.21.5",
     "eslint": "^8.57.0",
     "npm-run-all": "^4.1.5",
