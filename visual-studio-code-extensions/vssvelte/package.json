@@ -1,14 +1,29 @@
 {
+  "publisher": "martin-please",
   "name": "helm-table-visualizer",
   "displayName": "Helm Table Visualizer",
-  "description": "TODO: Give a description to the extension",
+  "description": "Preview Helm values files in a table. Columns represent the values files, rows represent the merged keys.",
   "version": "0.1.0",
+  "preview": true,
   "engines": {
     "vscode": "^1.91.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Visualization"
   ],
+  "keywords": [
+    "helm"
+  ],
+  "license": "MIT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martin-deploy-2/helm-table-visualizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martin-deploy-2/helm-table-visualizer/issues"
+  },
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
@@ -30,7 +45,7 @@
   "scripts": {
     "ext:install": "npm run front:install && npm run back:install",
     "ext:test": "npm run front:test && npm run back:test",
-    "ext:package": "npm run front:build && npm run back:build",
+    "ext:build": "npm run front:build && npm run back:build",
     "front:install": "cd src-webview && npm install",
     "front:test": "cd src-webview && npm run test",
     "front:build": "cd src-webview && npm run build",
