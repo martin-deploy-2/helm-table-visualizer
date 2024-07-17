@@ -5,6 +5,7 @@
 
   export let key: Key
   export let valuesFiles: Array<{
+    toggled: boolean
     path: string
     data: any
   }>
@@ -20,9 +21,11 @@
     </code>
   </td>
   {#each valuesFiles as v}
-    <td style="border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder); border-right: 1px solid var(--vscode-editorStickyScroll-shadow);">
-      <Td value={dig(key.path, v.data)}/>
-    </td>
+    {#if v.toggled}
+      <td style="border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder); border-right: 1px solid var(--vscode-editorStickyScroll-shadow);">
+        <Td value={dig(key.path, v.data)}/>
+      </td>
+    {/if}
   {/each}
 </tr>
 {#if key.expanded}

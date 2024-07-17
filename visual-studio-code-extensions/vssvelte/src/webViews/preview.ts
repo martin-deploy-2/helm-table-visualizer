@@ -47,21 +47,18 @@ export function createWebviewPanel(context: vscode.ExtensionContext) {
     }
 
     Promise.all([promiseOfChart, promiseOfYamlDocuments]).then(([chartUri, yamlDocuments]) => {
-      function up() {
-        const m = {
-          chartFolder: pathOf(chartUri?.path ?? "(No chart)"),
-          chartName: chartUri?.path.split("/").at(-1) ?? "(No chart)",
-          valuesFiles: yamlDocuments.map(v => ({
-            path: pathOf(v.uri.path),
-            data: yaml.load(v.getText(), { filename: v.uri.path }) ?? {}
-          }))
-        }
-
-        panel.title = m.chartFolder ?? pathOf(activeDocument.uri.path)
-        panel.webview.postMessage(m)
+      const m = {
+        type: "Init",
+        chartFolder: pathOf(chartUri?.path ?? "(No chart)"),
+        chartName: chartUri?.path.split("/").at(-1) ?? "(No chart)",
+        valuesFiles: yamlDocuments.map(v => ({
+          path: pathOf(v.uri.path),
+          data: yaml.load(v.getText(), { filename: v.uri.path }) ?? {}
+        }))
       }
 
-      up()
+      panel.title = m.chartFolder ?? pathOf(activeDocument.uri.path)
+      panel.webview.postMessage(m)
 
       context.subscriptions.push(
         vscode.workspace.onDidChangeTextDocument(e => {
@@ -69,7 +66,11 @@ export function createWebviewPanel(context: vscode.ExtensionContext) {
             return
           }
 
-          up()
+          panel.webview.postMessage({
+            type: "Edit",
+            valuesFilePath: pathOf(e.document.uri.path),
+            newData: yaml.load(e.document.getText(), { filename: e.document.uri.path }) ?? {}
+          })
         })
       )
     })
