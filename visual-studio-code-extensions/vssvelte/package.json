@@ -3,10 +3,10 @@
   "name": "helm-table-visualizer",
   "displayName": "Helm Table Visualizer",
   "description": "Preview Helm values files in a table. Columns represent the values files, rows represent the merged keys.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "preview": true,
   "engines": {
-    "vscode": "^1.91.0"
+    "vscode": "^1.91.1"
   },
   "categories": [
     "Other",
