@@ -15,7 +15,7 @@
 </script>
 
 <tr>
-  <td style="position: sticky; left: 0; background: var(--vscode-editorStickyScroll-background); border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder); border-right: 1px solid var(--vscode-editorStickyScroll-shadow); padding-left: {depth}em; vertical-align: top;">
+  <td style="position: sticky; left: 0; border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder); border-right: 1px solid var(--vscode-editorStickyScroll-shadow); padding-left: {depth}em; vertical-align: top;">
     <label>
       <input type="checkbox" bind:checked={key.expanded}/>
       <code style="white-space: preserve; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); background: none;">
@@ -37,3 +37,13 @@
     <svelte:self key={childKey} {valuesFiles} />
   {/each}
 {/if}
+
+<style>
+  tr > td:nth-child(1) {
+    background: var(--vscode-editorStickyScroll-background);
+  }
+
+  tr:hover > td {
+    background: var(--vscode-editorStickyScrollHover-background);
+  }
+</style>
