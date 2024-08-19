@@ -2,20 +2,21 @@
   import isDict from "../utilities/isDict"
 
   export let value: any
+  export let valueFromFallback: boolean
 </script>
 
 {#if value === undefined}
-  <input style="text-align: center; border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-lines); background: transparent;" type="text" value="?" readonly/>
+  <div style="width: 100%; height: 100%; text-align: center; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-lines);">?</div>
 {:else if value === null}
-  <input style="text-align: center; border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-red); background: transparent;" type="text" value="~" readonly/>
+  <div style="width: 100%; height: 100%; text-align: center; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-red); {valueFromFallback ? "opacity: 70%;" : "background: color-mix(in srgb, transparent, var(--vscode-charts-red) 10%);"}">~</div>
 {:else if typeof value == "boolean"}
-  <input style="min-width: 100%; min-height: 100%; background: var(--vscode-charts-blue);" type="checkbox" checked={value} {...{ onclick: "return false;" }}/>
+  <div style="width: 100%; height: 100%; text-align: center; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-blue); {valueFromFallback ? "opacity: 70%;" : "background: color-mix(in srgb, transparent, var(--vscode-charts-blue) 10%);"}">{value ? "true" : "false"}</div>
 {:else if typeof value == "number"}
-  <input style="border: none; width: 100%; height: 100%; text-align: right; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-green); background: transparent;" type="number" value="{value}" readonly/>
+  <div style="width: 100%; height: 100%; text-align: right; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-green); {valueFromFallback ? "opacity: 70%;" : "background: color-mix(in srgb, transparent, var(--vscode-charts-green) 10%);"}">{value}</div>
 {:else if typeof value == "string"}
-  <div style="min-width: 100%; min-height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-orange); background: transparent; text-wrap: nowrap; white-space: preserve;" role="textbox">{value}</div>
+  <div style="width: 100%; height: 100%; text-align: left; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-orange); {valueFromFallback ? "opacity: 70%;" : "background: color-mix(in srgb, transparent, var(--vscode-charts-orange) 10%);"} text-wrap: nowrap; white-space: preserve;">{value}</div>
 {:else if Array.isArray(value)}
-  <input style="text-align: center; border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-yellow); background: transparent;" type="text" value="[]" readonly/>
+  <div style="width: 100%; height: 100%; text-align: left; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-yellow); {valueFromFallback ? "opacity: 70%;" : "background: color-mix(in srgb, transparent, var(--vscode-charts-yellow) 10%);"}">{"[]"}</div>
 {:else if isDict(value)}
-  <input style="text-align: center; border: none; width: 100%; height: 100%; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-purple); background: transparent;" type="text" value="{"{}"}" readonly/>
+  <div style="width: 100%; height: 100%; text-align: left; font-family: var(--vscode-editor-font-family); font-size: var(--vscode-editor-font-size); font-weight: var(--vscode-editor-font-weight); color: var(--vscode-charts-purple); {valueFromFallback ? "opacity: 70%;" : "background: color-mix(in srgb, transparent, var(--vscode-charts-purple) 10%);"}">{"{}"}</div>
 {/if}

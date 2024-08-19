@@ -12,6 +12,18 @@
 
   $: depth = key.path.length - 1
   $: leaf = key.path.at(-1)
+
+  function digOrFallback(keyPath: string[], valuesFiles: Array<{ toggled: boolean, data: any }>, i: number): { value: any, valueFromFallback: boolean } {
+    let dug: any
+    let j = i + 1
+
+    do
+      if (valuesFiles[--j].toggled)
+        dug = dig(keyPath, valuesFiles[j].data)
+    while (typeof dug == "undefined" && j > 0)
+
+    return { value: dug, valueFromFallback: j != i }
+  }
 </script>
 
 <tr>
@@ -23,10 +35,10 @@
       </code>
     </label>
   </td>
-  {#each valuesFiles as v}
+  {#each valuesFiles as v, i}
     {#if v.toggled}
-      <td style="border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder); border-right: 1px solid var(--vscode-editorStickyScroll-shadow);">
-        <Td value={dig(key.path, v.data)}/>
+      <td style="border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder); border-right: 1px solid var(--vscode-editorStickyScroll-shadow); vertical-align: top;">
+        <Td {...digOrFallback(key.path, valuesFiles, i)}/>
       </td>
     {/if}
   {/each}
