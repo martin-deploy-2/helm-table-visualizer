@@ -1,5 +1,7 @@
 # Helm Table Visualizer
 
+![](./README.screenshot.png)
+
 Preview Helm values files in a table. Columns represent the values files, rows represent the merged keys.
 
 ## How To Use?
